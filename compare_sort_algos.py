@@ -6,12 +6,13 @@
 # Sorting Algorithms compared are Insertion, Selection, Bubble, Merge.
 
 import sys
-import random
+import random														
 import time
 import insertion_sort
 import selection_sort
 import bubble_sort
 import merge_sort
+import quick_sort
 
 import matplotlib.pyplot as plt; plt.rcdefaults()
 import numpy as np
@@ -42,16 +43,21 @@ def main():
   bubble_time = time.clock()
   bubble_tot = bubble_time - selection_time
   print ("Bubble Sort %s" % (bubble_tot))
-  sorted_array = merge_sort.merge_sort(array)
+  sorted_array_m = merge_sort.merge_sort(array)
   merge_time = time.clock()
   merge_tot = merge_time - bubble_time
   print ("Merge Sort %s" % (merge_tot))
+  sorted_array_q = quick_sort.quick_sort(array)
+  quick_time = time.clock()
+  quick_tot = quick_time - merge_time
+  print ("Quick Sort %s" % (quick_tot))
   
-  
-  objects = ('Insertion', 'Selection', 'Bubble', 'Merge')
+  objects = ('Insertion', 'Selection', 'Bubble', 'Merge','Quick')
   y_pos = np.arange(len(objects))
-  performance = [insertion_tot/merge_tot,selection_tot/merge_tot,bubble_tot/merge_tot,merge_tot/merge_tot]
+  performance = [insertion_tot/merge_tot,selection_tot/merge_tot,bubble_tot/merge_tot,merge_tot/merge_tot,quick_tot/merge_tot]
  
+  if (sorted_array_m == sorted_array_q):
+	print "Merge and Quick sorts are same!"
   plt.bar(y_pos, performance, align='center', alpha=0.5)
   plt.xticks(y_pos, objects)
   plt.ylabel('Time taken w.r.t merge sort')
@@ -59,6 +65,7 @@ def main():
  
   plt.show()
   
+
   #print sorted_array
 
 
