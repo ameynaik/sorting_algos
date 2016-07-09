@@ -13,6 +13,7 @@ import selection_sort
 import bubble_sort
 import merge_sort
 import quick_sort
+import heap_sort
 
 import matplotlib.pyplot as plt; plt.rcdefaults()
 import numpy as np
@@ -51,13 +52,17 @@ def main():
   quick_time = time.clock()
   quick_tot = quick_time - merge_time
   print ("Quick Sort %s" % (quick_tot))
+  sorted_array_h = heap_sort.heap_sort(array)
+  heap_time = time.clock()
+  heap_tot = heap_time - quick_time
+  print ("Heap Sort %s" % (heap_tot))
   
-  objects = ('Insertion', 'Selection', 'Bubble', 'Merge','Quick')
+  objects = ('Insertion', 'Selection', 'Bubble', 'Merge','Quick','Heap')
   y_pos = np.arange(len(objects))
-  performance = [insertion_tot/merge_tot,selection_tot/merge_tot,bubble_tot/merge_tot,merge_tot/merge_tot,quick_tot/merge_tot]
+  performance = [insertion_tot/merge_tot,selection_tot/merge_tot,bubble_tot/merge_tot,merge_tot/merge_tot,quick_tot/merge_tot,heap_tot/merge_tot]
  
   if (sorted_array_m == sorted_array_q):
-	print "Merge and Quick sorts are same!"
+	print "Merge and Quick sorts are giving the same sorted array results"
   plt.bar(y_pos, performance, align='center', alpha=0.5)
   plt.xticks(y_pos, objects)
   plt.ylabel('Time taken w.r.t merge sort')
