@@ -32,7 +32,7 @@ def partition(array,first,last):
 		subarr[L],subarr[U] = subarr[U],subarr[L] #Swap
 	array[first:last+1] = subarr
 	partition(array,first,L-1+first)
-	partition(array,L+1+first,first+L+size-L-1)
+	partition(array,L+first,first+L+size-L-1)
 	
 	return array
 
